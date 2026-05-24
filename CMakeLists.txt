@@ -97,7 +97,7 @@ add_feature_info(PYTHON_BINDINGS ${BUILD_PYTHON_BINDINGS} "Python bindings")
 set(kguiaddons_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/kguiaddons_version.h")
 ecm_setup_version(PROJECT VARIABLE_PREFIX KGUIADDONS
                         VERSION_HEADER "${kguiaddons_version_header}"
-                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6GuiAddonsConfigVersion.cmake"
+			PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/SonicFrameworksGuiAddonsConfigVersion.cmake"
                         SOVERSION 6)
 
 ecm_set_disabled_deprecation_versions(
@@ -116,30 +116,30 @@ if (BUILD_PYTHON_BINDINGS)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6GuiAddons")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/SonicFrameworksGuiAddons")
 
 include(CMakePackageConfigHelpers)
 
-configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6GuiAddonsConfig.cmake.in"
-                              "${CMAKE_CURRENT_BINARY_DIR}/KF6GuiAddonsConfig.cmake"
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/SonicFrameworksGuiAddonsConfig.cmake.in"
+	"${CMAKE_CURRENT_BINARY_DIR}/SonicFrameworksGuiAddonsConfig.cmake"
                               INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
                               )
 
-install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6GuiAddonsConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KF6GuiAddonsConfigVersion.cmake"
+			      install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/SonicFrameworksGuiAddonsConfig.cmake"
+				      "${CMAKE_CURRENT_BINARY_DIR}/SonicFrameworksGuiAddonsConfigVersion.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel )
 
 
-install(EXPORT KF6GuiAddonsTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE KF6GuiAddonsTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
+install(EXPORT SonicFrameworksGuiAddonsTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE SonicFrameworksGuiAddonsTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 
 
 install(FILES ${kguiaddons_version_header}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KGuiAddons COMPONENT Devel)
 
 if (NOT WIN32)
-    ecm_generate_pkgconfig_file(BASE_NAME KF6GuiAddons
+	ecm_generate_pkgconfig_file(BASE_NAME SonicFrameworksGuiAddons
       INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KGuiAddons
       DEPS Qt6Gui
     INSTALL)
